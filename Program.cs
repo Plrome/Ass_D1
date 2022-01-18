@@ -1,4 +1,4 @@
-﻿namespace Ass_1{
+namespace Ass_1{
     class Program{
         static List<Member> members = new List<Member>
         {
@@ -102,8 +102,8 @@
             // Console.WriteLine("-----------------------");
 
             //5.The first member in Ha Noi
-            // var placeMember = GetMemberByBirthPlace();
-            // PrintData(placeMember);
+            var placeMember = GetMemberByBirthPlace("ha noi");
+            PrintData(new List<Member>{placeMember});
 
         }
         static void PrintData(List<Member> data){
@@ -166,15 +166,17 @@
             return Tuple.Create(list1,list2,list3);
             
         }
-        static List<Member> GetMemberByBirthPlace(){
-            var result = new List<Member>();
-            foreach(var member in members){
-                if(member.BirthPlace == "Ha Noi"){
-                    result.Add(member);
-                    break;
-                }
+        static Member? GetMemberByBirthPlace(string place){
+            var i = 0;
+            while(!members[i].BirthPlace.Equals(place , StringComparison.CurrentCultureIgnoreCase)){
+                i++;
             }
-            return result;
+            if(i>=0 && i<members.Count){
+                return members[i];
+            }
+            else{
+                return null;
+            }
         }
         
     }
